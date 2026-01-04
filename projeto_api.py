@@ -48,6 +48,8 @@ novos_nomes_grupo = {'classe.grupo.id' :'Grupo_id',
                      'classe.grupo.divisao.id' : 'Divisao_id'}
 
 df_grupo = df[colunas_grupo].rename(columns=novos_nomes_grupo).drop_duplicates()
+df_grupo['Grupo_descricao'] = df_grupo['Grupo_descricao'].str.strip()
+df_grupo['Grupo_descricao'] = df_grupo['Grupo_descricao'].str.title()
 
 #TRATAMENTO DATAFRAME CLASSE
 colunas_classe = ['classe.id',

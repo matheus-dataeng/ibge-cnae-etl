@@ -34,6 +34,9 @@ novos_nomes_divisao = {'classe.grupo.divisao.id' : 'Divisao_id',
 
 df_divisao = df[colunas_divisao].rename(columns=novos_nomes_divisao).drop_duplicates()
 
+agora_divisao = datetime.now()
+df_divisao['Data_Carga'] = agora_divisao.date('%d/%m/%Y')
+
 #TRATAMENTO DATAFRAME GRUPO
 colunas_grupo = ['classe.grupo.id',
                  'classe.grupo.descricao',

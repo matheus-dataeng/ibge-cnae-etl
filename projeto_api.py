@@ -144,24 +144,3 @@ schedule.every().monday.at("12:00").do(carga_banco)
 while True:
     schedule.run_pending()
     time.sleep(1)
-
-'''
-SELECT
-    o.order_id,
-    o.order_date,
-    c.customer_id,
-    c.customer_name,
-    s.store_id,
-    s.store_name,
-    oi.product_id,
-    oi.quantity,
-    oi.price
-FROM orders o
-LEFT JOIN customers c
-    ON o.customer_id = c.customer_id
-LEFT JOIN stores s
-    ON o.store_id = s.store_id
-LEFT JOIN order_items oi
-    ON o.order_id = oi.order_id;
-
-'''

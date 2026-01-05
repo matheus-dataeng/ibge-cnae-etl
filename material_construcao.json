@@ -1,0 +1,35 @@
+[
+    {
+        "id_material":1,
+        "nome":"Cimento",
+        "quantidade":2,
+        "preco":50.0,
+        "categoria":"Construção Civil",
+        "status":"Ativo",
+        "fornecedor":"Matheus Entregas",
+        "unidade_medida":"Kg",
+        "data_cadastro":"2025-12-04"
+    },
+    {
+        "id_material":2,
+        "nome":"Cabo Eletrico",
+        "quantidade":2,
+        "preco":150.0,
+        "categoria":"Eletrico",
+        "status":"Ativo",
+        "fornecedor":"Matheus Serviços ",
+        "unidade_medida":"Metro",
+        "data_cadastro":"2025-12-04"
+    },
+    {
+        "id_material":3,
+        "nome":"Tinta Acrilica",
+        "quantidade":2,
+        "preco":160.0,
+        "categoria":"Tinta",
+        "status":"Ativo",
+        "fornecedor":"Suvinil",
+        "unidade_medida":"Litro",
+        "data_cadastro":"2025-12-04"
+    }
+]

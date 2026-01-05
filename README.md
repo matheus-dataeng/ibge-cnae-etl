@@ -1,2 +1,3 @@
-# ibge-cnae-etl
-Projeto de engenharia de dados com ETL em Python consumindo a API do IBGE (CNAE), realizando transformações, normalização relacional e carga em SQL Server via SQLAlchemy, com automação do processo utilizando schedule.
+Este projeto de Engenharia de Dados implementa um pipeline ETL em Python utilizando dados da API do IBGE, com foco na classificação CNAE. A extração é feita via API REST, seguida por etapas de transformação e normalização relacional dos dados, aplicando boas práticas de modelagem para evitar redundâncias.
+
+Após o tratamento, os dados são carregados em um banco de dados SQL Server por meio do SQLAlchemy, garantindo organização e integridade das informações. O processo ETL é automatizado com a biblioteca schedule, permitindo execuções periódicas. O projeto tem como objetivo demonstrar conhecimentos em ingestão de dados, integração com APIs, modelagem relacional, automação de pipelines e uso de ferramentas amplamente utilizadas na área de engenharia de dados.

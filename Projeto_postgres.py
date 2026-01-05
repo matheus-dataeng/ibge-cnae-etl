@@ -7,11 +7,11 @@ import tkinter.messagebox as messagebox
 
 load_dotenv()
 conexao_banco = psycopg2.connect(
-    dbname=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT")
+    dbname = os.getenv("DB_NAME"),
+    user = os.getenv("DB_USER"),
+    password = os.getenv("DB_PASSWORD"),
+    host = os.getenv("DB_HOST"),
+    port = os.getenv("DB_PORT")
 )
 
 cursor = conexao_banco.cursor()
@@ -59,11 +59,11 @@ def salvar_dados_banco():
         data_cadastrado
     )
     conexao_banco = psycopg2.connect(
-    dbname=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT")
+    dbname = os.getenv("DB_NAME"),
+    user = os.getenv("DB_USER"),
+    password = os.getenv("DB_PASSWORD"),
+    host = os.getenv("DB_HOST"),
+    port = os.getenv("DB_PORT")
 )
 
 
@@ -95,25 +95,21 @@ def salvar_dados_banco():
 
 def arquivo_json():
     conexao_banco = psycopg2.connect(
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT")
+        dbname = os.getenv("DB_NAME"),
+        user = os.getenv("DB_USER"),
+        password = os.getenv("DB_PASSWORD"),
+        host = os.getenv("DB_HOST"),
+        port = os.getenv("DB_PORT")
     )
 
     df = pd.read_sql("SELECT * FROM materiais", conexao_banco)
     conexao_banco.close()
+    df['data_cadastro'] = pd.to_datetime(df['data_cadastro'])
+    df['data_cadastro'] = df['data_cadastro'].dt.strftime('%Y-%m-%d') 
+    caminho_json = os.getenv("JSON_PATH")
+    df.to_json(caminho_json, orient='records', force_ascii=False, indent=4)
+    messagebox.showinfo('Sucesso!', 'Arquivo atualizado!')
 
-    # Converter datas para string segura, sem usar .dt
-    df['data_cadastro'] = pd.to_datetime(df['data_cadastro'], errors='coerce')
-    df['data_cadastro'] = df['data_cadastro'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else "")
-
-    # Salvar JSON
-    df.to_json('material_construcao.json', orient='records', force_ascii=False, indent=4)
-
-    messagebox.showinfo('Sucesso!', 'Arquivo JSON atualizado!')
-    
 # INTERFACE
 janela = tk.Tk()
 janela.title('Cadastro Material')

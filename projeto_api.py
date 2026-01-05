@@ -84,66 +84,66 @@ df_subclasses = df_subclasses.drop_duplicates(subset=['Id'])
 df_subclasses['Atividades'] = df_subclasses['Atividades'].apply(str)
 
 #CONEXÃO COM BANCO
-#def carga_banco():
-server = 'MATHEUS'
-database = 'Projeto_API'
-conexao_sqlserver = (
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    f"SERVER={server};"
-    f"DATABASE={database};"
-    "Trusted_Connection=yes;"
-)
+def carga_banco():
+    server = 'MATHEUS'
+    database = 'Projeto_API'
+    conexao_sqlserver = (
+        "DRIVER={ODBC Driver 17 for SQL Server};"
+        f"SERVER={server};"
+        f"DATABASE={database};"
+        "Trusted_Connection=yes;"
+    )
 
-params = urllib.parse.quote_plus(conexao_sqlserver)
-engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+    params = urllib.parse.quote_plus(conexao_sqlserver)
+    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
 
-nome_tabela_secao = 'Secao'
-nome_tabela_divisao = 'Divisao'
-nome_tabela_grupo = 'Grupo'
-nome_tabela_classes = 'Classe'
-nome_tabela_subclasses = 'Subclasse'
+    nome_tabela_secao = 'Secao'
+    nome_tabela_divisao = 'Divisao'
+    nome_tabela_grupo = 'Grupo'
+    nome_tabela_classes = 'Classe'
+    nome_tabela_subclasses = 'Subclasse'
 
-df_secao.to_sql(name=nome_tabela_secao, con=engine, if_exists='replace', index=False, dtype={
-    'Secao_id' : NVARCHAR(255),
-    'Secao_descricao' : NVARCHAR(None)
-})
+    df_secao.to_sql(name=nome_tabela_secao, con=engine, if_exists='replace', index=False, dtype={
+        'Secao_id' : NVARCHAR(255),
+        'Secao_descricao' : NVARCHAR(None)
+    })
 
-df_divisao.to_sql(name=nome_tabela_divisao, con=engine, if_exists='replace', index=False, dtype={
-    'Divisao_id' : NVARCHAR(255),
-    'Divisao_descricao' : NVARCHAR(None),
-    'Secao_id' : NVARCHAR(255)
-})
+    df_divisao.to_sql(name=nome_tabela_divisao, con=engine, if_exists='replace', index=False, dtype={
+        'Divisao_id' : NVARCHAR(255),
+        'Divisao_descricao' : NVARCHAR(None),
+        'Secao_id' : NVARCHAR(255)
+    })
 
-df_grupo.to_sql(name=nome_tabela_grupo, con=engine, if_exists='replace', index=False, dtype={
-    'Grupo_id' : NVARCHAR(255),
-    'Grupo_descricao' : NVARCHAR(None),
-    'Divisao_id' : NVARCHAR(255),
-})
-
-df_classes.to_sql(name=nome_tabela_classes, con=engine, if_exists='replace', index=False, dtype={
-        'Classe_id' : NVARCHAR(255),
-        'Classe_descricao' : NVARCHAR(None),
+    df_grupo.to_sql(name=nome_tabela_grupo, con=engine, if_exists='replace', index=False, dtype={
         'Grupo_id' : NVARCHAR(255),
-        'Classe_observacoes' : NVARCHAR(None)
-})
+        'Grupo_descricao' : NVARCHAR(None),
+        'Divisao_id' : NVARCHAR(255),
+    })
 
-df_subclasses.to_sql(name=nome_tabela_subclasses, con=engine, if_exists='replace', index=False, dtype={
-    'Id' : NVARCHAR(255),
-    'Descricao' : NVARCHAR(None),
-    'Atividades' : NVARCHAR(None),
-    'Observacoes' : NVARCHAR(None),
-    'Classe_id' : NVARCHAR(255),
-})
-engine.dispose()
-print("Todas as tabelas atualizadas com sucesso!")
+    df_classes.to_sql(name=nome_tabela_classes, con=engine, if_exists='replace', index=False, dtype={
+            'Classe_id' : NVARCHAR(255),
+            'Classe_descricao' : NVARCHAR(None),
+            'Grupo_id' : NVARCHAR(255),
+            'Classe_observacoes' : NVARCHAR(None)
+    })
+
+    df_subclasses.to_sql(name=nome_tabela_subclasses, con=engine, if_exists='replace', index=False, dtype={
+        'Id' : NVARCHAR(255),
+        'Descricao' : NVARCHAR(None),
+        'Atividades' : NVARCHAR(None),
+        'Observacoes' : NVARCHAR(None),
+        'Classe_id' : NVARCHAR(255),
+    })
+    engine.dispose()
+    print("Todas as tabelas atualizadas com sucesso!")
 
         
-'''schedule.clear()
+schedule.clear()
 schedule.every().monday.at("12:00").do(carga_banco)
 
 while True:
     schedule.run_pending()
-    time.sleep(1)'''
+    time.sleep(1)
 
 '''
 SELECT

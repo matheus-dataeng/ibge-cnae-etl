@@ -1,0 +1,55 @@
+Cadastro de Materiais de Construção
+
+Descrição:
+Este projeto é uma aplicação em Python para cadastrar materiais de construção, armazenar os dados em um banco PostgreSQL e gerar um arquivo JSON com os registros. A interface gráfica é construída com Tkinter, tornando a operação simples e prática.
+
+Funcionalidades:
+- Inserir dados de materiais no banco PostgreSQL
+- Campos do material:
+  - ID do Material
+  - Nome
+  - Quantidade
+  - Preço
+  - Categoria
+  - Status
+  - Fornecedor
+  - Unidade de Medida
+  - Data de Cadastro
+- Gerar arquivo JSON atualizado automaticamente
+- Limpeza automática dos campos após cada cadastro
+
+Tecnologias:
+- Python 3.x
+- Pandas
+- Tkinter
+- psycopg2
+- PostgreSQL
+- dotenv (para variáveis de ambiente)
+
+Pré-requisitos:
+1. Python 3.x instalado
+2. PostgreSQL instalado e configurado
+3. Instalar dependências do projeto:
+   pip install pandas psycopg2 python-dotenv
+4. Criar arquivo .env com:
+   DB_NAME=nome_do_banco
+   DB_USER=usuario
+   DB_PASSWORD=senha
+   DB_HOST=localhost
+   DB_PORT=5432
+   JSON_PATH=C:/caminho/para/salvar/material_construcao.json
+
+Como usar:
+1. Abra o arquivo Projeto_postgres.py
+2. Preencha os campos da interface com os dados solicitados
+3. Clique em "Inserir dados" para salvar no banco
+4. Clique em "Arquivo JSON" para gerar/atualizar o arquivo JSON
+
+Observações:
+- O caminho do arquivo JSON é configurado no .env para evitar expor caminhos fixos no código
+- Datas são convertidas automaticamente para o formato YYYY-MM-DD
+- Sistema simples, pode ser expandido com funcionalidades de edição e exclusão de materiais
+
+Autor:
+Matheus Meneses
+Engenharia de Dados | Python | PostgreSQL

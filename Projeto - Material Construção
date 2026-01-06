@@ -50,6 +50,4 @@ Observações:
 - Datas são convertidas automaticamente para o formato YYYY-MM-DD
 - Sistema simples, pode ser expandido com funcionalidades de edição e exclusão de materiais
 
-Autor:
-Matheus Meneses
-Engenharia de Dados | Python | PostgreSQL
+
